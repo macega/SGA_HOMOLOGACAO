@@ -13,7 +13,7 @@ namespace App\Controller\Admin;
 
 use Novosga\Http\Envelope;
 use Novosga\Service\AtendimentoService;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,7 +24,7 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @Route("/admin")
  */
-class AdminController extends Controller
+class AdminController extends AbstractController
 {
     /**
      *
@@ -50,7 +50,7 @@ class AdminController extends Controller
     public function acumularAtendimentos(Request $request, AtendimentoService $service)
     {
         $envelope = new Envelope();
-        $service->acumularAtendimentos();
+        $service->acumularAtendimentos(null);
 
         return $this->json($envelope);
     }

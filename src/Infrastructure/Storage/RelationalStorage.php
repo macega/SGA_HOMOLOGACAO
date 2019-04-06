@@ -186,14 +186,20 @@ abstract class RelationalStorage extends DoctrineStorage
     /**
      * {@inheritdoc}
      */
-    public function acumularAtendimentos(Unidade $unidade = null)
+    public function acumularAtendimentos(?Unidade $unidade, array $ctx = [])
     {
         $self = $this;
         $conn = $this->om->getConnection();
         
-        $conn->transactional(function ($conn) use ($self, $unidade) {
-            $data      = (new DateTime())->format('Y-m-d H:i:s');
+        $conn->transactional(function ($conn) use ($self, $unidade, $ctx) {
+            $data      = new DateTime();
             $unidadeId = $unidade ? $unidade->getId() : 0;
+
+            if (isset($ctx['data']) && $ctx['data'] instanceof DateTime) {
+                $data = $ctx['data'];
+            }
+
+            $data = $data->format('Y-m-d H:i:s');
 
             // tables name
             $historicoTable        = $this->om->getClassMetadata(AtendimentoHistorico::class)->getTableName();
@@ -345,15 +351,21 @@ abstract class RelationalStorage extends DoctrineStorage
             $query->bindValue('unidade', $unidadeId, PDO::PARAM_INT);
             $query->execute();
 
+            $query = $conn->prepare("SELECT COUNT(*) FROM {$atendimentoTable}");
+            $query->execute();
+            $total = (int) $query->fetchColumn();
+
             // reinicia o contador das senhas
-            $this->reiniciarContadores($conn, $unidadeId);
+            if ($total === 0) {
+                $this->reiniciarContadores($conn, $unidadeId);
+            }
         });
     }
     
     /**
      * {@inheritdoc}
      */
-    public function apagarDadosAtendimento(Unidade $unidade = null)
+    public function apagarDadosAtendimento(?Unidade $unidade, array $ctx = [])
     {
         $self = $this;
         $conn = $this->om->getConnection();
