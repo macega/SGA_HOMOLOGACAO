@@ -16,6 +16,7 @@ use App\Service\TicketService;
 use Novosga\Entity\Atendimento;
 use Novosga\Service\AtendimentoService;
 use Psr\Log\LoggerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +30,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  *
  * @Route("/api")
  */
-class TriagemController extends ApiControllerBase
+class TriagemController extends AbstractController
 {
     /**
      * @Route("/print/{id}", methods={"GET"})
