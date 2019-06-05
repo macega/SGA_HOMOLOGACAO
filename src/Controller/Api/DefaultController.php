@@ -22,14 +22,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/api")
-     * @Route("/api/")
+     * @Route("/api/status")
      */
     public function index()
     {
         return $this->json([
-            'status' => 'ok',
-            'time'   => time(),
+            'status'    => 'ok',
+            'time'      => time(),
+            'version'   => '2.1',
+            'versionId' => 20100000,
         ]);
     }
 }

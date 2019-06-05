@@ -19,17 +19,7 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        oauth_token:
-           pattern:    ^/api/token
-           security:   false
-            
-        api:
-           pattern:    ^/(api|\w+\.\w+/api)
-           fos_oauth:  true
-           stateless:  true
-           anonymous:  false
-
+        
         main:
             anonymous: true
             pattern: ^/

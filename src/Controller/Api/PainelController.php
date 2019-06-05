@@ -33,6 +33,10 @@ class PainelController extends ApiControllerBase
     public function painel(Request $request, Unidade $unidade)
     {
         $servicos = explode(',', $request->get('servicos'));
+
+        if (!count($servicos)) {
+            $servicos = [0];
+        }
         
         $senhas = $this
             ->getDoctrine()

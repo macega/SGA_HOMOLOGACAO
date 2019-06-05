@@ -39,10 +39,6 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 7 }
 
-    App\Listener\CorsListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.request, priority: 700 }
-
     App\Listener\JsonExceptionListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, priority: 1000 }

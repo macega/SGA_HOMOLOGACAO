@@ -1,0 +1,41 @@
+api_platform:
+    title: 'Novo SGA'
+    description: 'Novo SGA API'
+    version: '2.1.0'
+    show_webby: false
+    collection:
+        order: 'ASC'
+        order_parameter_name: 'order'
+        pagination:
+            enabled: true
+            client_enabled: false
+            client_items_per_page: true
+            items_per_page: 25
+            maximum_items_per_page: 50
+            page_parameter_name: 'page'
+            enabled_parameter_name: 'pagination'
+            items_per_page_parameter_name: 'itemsPerPage'
+            partial: true
+            client_partial: true
+            partial_parameter_name: 'partial'
+    mapping:
+        paths:
+            - '%kernel.project_dir%/config/api'
+    formats:
+        jsonld:
+            mime_types: ['application/ld+json']
+        json:
+            mime_types: ['application/json']
+        html:
+            ['text/html']
+        xml:
+            ['application/xml', 'text/xml']
+    error_formats:
+        jsonproblem:
+            mime_types: ['application/problem+json']
+        jsonld:
+            mime_types: ['application/ld+json']
+        html:
+            ['text/html']
+        xml:
+            ['application/xml', 'text/xml']

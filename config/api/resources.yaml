@@ -1,0 +1,180 @@
+resources:
+    Novosga\Entity\Atendimento:
+        shortName: 'Atendimento'
+        description: 'Support tickets'
+        iri: 'http://schema.org/Atendimento'
+        attributes: ~
+        itemOperations:
+            get:
+                method: 'GET'
+        collectionOperations:
+            get:
+                method: 'GET'
+    Novosga\Entity\AtendimentoHistorico:
+        shortName: 'AtendimentoHistorico'
+        description: 'Historical support tickets'
+        iri: 'http://schema.org/AtendimentoHistorico'
+        attributes: ~
+        itemOperations:
+            get:
+                method: 'GET'
+        collectionOperations:
+            get:
+                method: 'GET'
+
+    Novosga\Entity\Unidade:
+        shortName: 'Unidade'
+        description: 'Attendance unity'
+        iri: 'http://schema.org/Unidade'
+        attributes: ~
+        itemOperations:
+            get:
+                method: 'GET'
+            put:
+                method: 'PUT'
+                access_control: "is_granted('ROLE_ADMIN')"
+            delete:
+                method: 'DELETE'
+                access_control: "is_granted('ROLE_ADMIN')"
+        collectionOperations:
+            get:
+                method: 'GET'
+            post:
+                method: 'POST'
+                access_control: "is_granted('ROLE_ADMIN')"
+
+    Novosga\Entity\Departamento:
+        shortName: 'Departamento'
+        description: 'Attendance departments'
+        iri: 'http://schema.org/Departamento'
+        attributes: ~
+        itemOperations:
+            get:
+                method: 'GET'
+            put:
+                method: 'PUT'
+                access_control: "is_granted('ROLE_ADMIN')"
+            delete:
+                method: 'DELETE'
+                access_control: "is_granted('ROLE_ADMIN')"
+        collectionOperations:
+            get:
+                method: 'GET'
+            post:
+                method: 'POST'
+                access_control: "is_granted('ROLE_ADMIN')"
+
+    Novosga\Entity\Prioridade:
+        shortName: 'Prioridade'
+        description: 'Attendance priority'
+        iri: 'http://schema.org/Prioridade'
+        attributes: ~
+        itemOperations:
+            get:
+                method: 'GET'
+            put:
+                method: 'PUT'
+                access_control: "is_granted('ROLE_ADMIN')"
+            delete:
+                method: 'DELETE'
+                access_control: "is_granted('ROLE_ADMIN')"
+        collectionOperations:
+            get:
+                method: 'GET'
+            post:
+                method: 'POST'
+                access_control: "is_granted('ROLE_ADMIN')"
+
+    Novosga\Entity\Local:
+        shortName: 'Local'
+        description: 'Attendance place'
+        iri: 'http://schema.org/Local'
+        attributes: ~
+        itemOperations:
+            get:
+                method: 'GET'
+                path: 'locais/{id}'
+            put:
+                method: 'PUT'
+                path: 'locais/{id}'
+                access_control: "is_granted('ROLE_ADMIN')"
+            delete:
+                method: 'DELETE'
+                path: 'locais/{id}'
+                access_control: "is_granted('ROLE_ADMIN')"
+        collectionOperations:
+            get:
+                method: 'GET'
+                path: 'locais'
+            post:
+                method: 'POST'
+                path: 'locais'
+                access_control: "is_granted('ROLE_ADMIN')"
+
+    Novosga\Entity\Servico:
+        shortName: 'Servico'
+        description: 'Support service'
+        iri: 'http://schema.org/Servico'
+        attributes: ~
+        itemOperations:
+            get:
+                method: 'GET'
+            put:
+                method: 'PUT'
+                access_control: "is_granted('ROLE_ADMIN')"
+            delete:
+                method: 'DELETE'
+                access_control: "is_granted('ROLE_ADMIN')"
+        collectionOperations:
+            get:
+                method: 'GET'
+            post:
+                method: 'POST'
+                access_control: "is_granted('ROLE_ADMIN')"
+
+    Novosga\Entity\Usuario:
+        shortName: 'Usuario'
+        description: 'System users'
+        iri: 'http://schema.org/Usuario'
+        attributes: ~
+        itemOperations:
+            get:
+                method: 'GET'
+            put:
+                method: 'PUT'
+                access_control: "is_granted('ROLE_ADMIN')"
+            delete:
+                method: 'DELETE'
+                access_control: "is_granted('ROLE_ADMIN')"
+        collectionOperations:
+            get:
+                method: 'GET'
+            post:
+                method: 'POST'
+                access_control: "is_granted('ROLE_ADMIN')"
+
+    Novosga\Entity\PainelSenha:
+        shortName: 'PainelSenha'
+        description: 'Ticket sent to panel'
+        iri: 'http://schema.org/PainelSenha'
+        attributes: ~
+        itemOperations: []
+        collectionOperations:
+            get:
+                method: 'GET'
+                path: '/unidades/{id}/painel'
+                controller: App\Controller\Api\PainelController::painel
+                swagger_context:
+                    parameters:
+                        - 
+                            name: "id"
+                            in: "path"
+                            description: "Unity ID"
+                            required: true
+                            type: "integer"
+                        - 
+                            name: "servicos"
+                            in: "query"
+                            description: "Services ID separeted by comma"
+                            required: true
+                            type: "string"
