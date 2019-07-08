@@ -1,0 +1,16 @@
+App\Entity\UnidadeMeta:
+    type: entity
+    table: unidades_metadata
+    repositoryClass: App\Repository\ORM\EntityMetadataRepository
+    id:
+        entity:
+            associationKey: true
+    manyToOne:
+        entity:
+            targetEntity: App\Entity\Unidade
+            fetch: LAZY
+            joinColumns:
+                unidade_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

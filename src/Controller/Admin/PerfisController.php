@@ -12,7 +12,7 @@
 namespace App\Controller\Admin;
 
 use App\Form\PerfilType as EntityType;
-use Novosga\Entity\Perfil as Entity;
+use App\Entity\Perfil as Entity;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

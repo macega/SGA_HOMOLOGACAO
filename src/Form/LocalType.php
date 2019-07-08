@@ -11,7 +11,7 @@
 
 namespace App\Form;
 
-use Novosga\Entity\Local;
+use App\Entity\Local;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;

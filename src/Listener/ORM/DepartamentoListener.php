@@ -13,7 +13,7 @@ namespace App\Listener\ORM;
 
 use Exception;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Novosga\Entity\Departamento;
+use App\Entity\Departamento;
 
 /**
  * DepartamentoListener

@@ -12,7 +12,7 @@
 namespace App\Repository\ORM;
 
 use Doctrine\ORM\EntityRepository;
-use Novosga\Entity\Cliente;
+use App\Entity\Cliente;
 use Novosga\Repository\ClienteRepositoryInterface;
 
 /**
@@ -21,12 +21,11 @@ use Novosga\Repository\ClienteRepositoryInterface;
  * @author Rogério Lino <rogeriolino@gmail.com>
  */
 class ClienteRepository extends EntityRepository implements ClienteRepositoryInterface
-{
-    
+{   
     /**
      * Retorna todos os clientes ordenados pelo nome
      *
-     * @return Cliente[]
+     * @return ClienteInterface[]
      */
     public function findAll()
     {

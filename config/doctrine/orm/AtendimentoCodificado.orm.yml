@@ -1,0 +1,17 @@
+App\Entity\AtendimentoCodificado:
+    type: entity
+    table: atendimentos_codificados
+    id:
+        atendimento:
+            associationKey: true
+    manyToOne:
+        atendimento:
+            targetEntity: App\Entity\Atendimento
+            cascade: {  }
+            fetch: LAZY
+            inversedBy: codificados
+            joinColumns:
+                atendimento_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -12,7 +12,7 @@
 namespace App\Controller\Admin;
 
 use App\Form\LocalType as EntityType;
-use Novosga\Entity\Local as Entity;
+use App\Entity\Local as Entity;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

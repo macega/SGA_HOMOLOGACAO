@@ -12,7 +12,7 @@
 namespace App\Controller\Admin;
 
 use App\Form\ServicoType as EntityType;
-use Novosga\Entity\Servico as Entity;
+use App\Entity\Servico as Entity;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

@@ -1,0 +1,41 @@
+App\Entity\Agendamento:
+    type: entity
+    table: agendamentos
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: IDENTITY
+    fields:
+        data:
+            type: date
+            nullable: false
+            column: data
+        hora:
+            type: time
+            nullable: false
+            column: hora
+        dataConfirmacao:
+            type: datetime
+            nullable: true
+            column: data_confirmacao
+    manyToOne:
+        cliente:
+            targetEntity: App\Entity\Cliente
+            fetch: LAZY
+            cascade: [persist]
+            joinColumns:
+                cliente_id:
+                    referencedColumnName: id
+        unidade:
+            targetEntity: App\Entity\Unidade
+            fetch: LAZY
+            joinColumns:
+                unidade_id:
+                    referencedColumnName: id
+        servico:
+            targetEntity: App\Entity\Servico
+            fetch: LAZY
+            joinColumns:
+                servico_id:
+                    referencedColumnName: id

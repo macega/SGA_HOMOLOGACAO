@@ -12,7 +12,7 @@
 namespace App\Controller\Admin;
 
 use Exception;
-use Novosga\Entity\Unidade as Entity;
+use App\Entity\Unidade as Entity;
 use App\Form\UnidadeType as EntityType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

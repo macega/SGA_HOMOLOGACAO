@@ -12,10 +12,11 @@
 namespace App\Repository\ORM;
 
 use Doctrine\ORM\EntityRepository;
-use Novosga\Entity\Unidade;
-use Novosga\Entity\Usuario;
-use Novosga\Entity\Lotacao;
+use App\Entity\Unidade;
+use App\Entity\Usuario;
+use App\Entity\Lotacao;
 use Novosga\Repository\UnidadeRepositoryInterface;
+use Novosga\Entity\UsuarioInterface;
 
 /**
  * UnidadeRepository
@@ -38,10 +39,10 @@ class UnidadeRepository extends EntityRepository implements UnidadeRepositoryInt
     
     /**
      *
-     * @param Usuario $usuario
+     * @param UsuarioInterface $usuario
      * @return Unidade[]
      */
-    public function findByUsuario(Usuario $usuario)
+    public function findByUsuario(UsuarioInterface $usuario)
     {
         $qb = $this
                 ->createQueryBuilder('e')

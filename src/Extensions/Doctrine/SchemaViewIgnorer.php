@@ -12,8 +12,8 @@
 namespace App\Extensions\Doctrine;
 
 use Doctrine\ORM\Tools\Event\GenerateSchemaEventArgs;
-use Novosga\Entity\ViewAtendimento;
-use Novosga\Entity\ViewAtendimentoCodificado;
+use App\Entity\ViewAtendimento;
+use App\Entity\ViewAtendimentoCodificado;
 
 /**
  * DoctrineListener

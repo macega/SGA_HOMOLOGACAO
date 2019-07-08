@@ -1,0 +1,17 @@
+App\Entity\ServicoMeta:
+    type: entity
+    table: servicos_metadata
+    repositoryClass: App\Repository\ORM\EntityMetadataRepository
+    id:
+        entity:
+            associationKey: true
+    manyToOne:
+        entity:
+            targetEntity: App\Entity\Servico
+            cascade: {  }
+            fetch: LAZY
+            joinColumns:
+                servico_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

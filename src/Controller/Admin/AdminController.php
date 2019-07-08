@@ -12,7 +12,7 @@
 namespace App\Controller\Admin;
 
 use Novosga\Http\Envelope;
-use Novosga\Service\AtendimentoService;
+use App\Service\AtendimentoService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

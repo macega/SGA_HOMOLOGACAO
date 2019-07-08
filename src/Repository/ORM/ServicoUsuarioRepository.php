@@ -12,7 +12,7 @@
 namespace App\Repository\ORM;
 
 use Doctrine\ORM\EntityRepository;
-use Novosga\Entity\ServicoUsuario;
+use App\Entity\ServicoUsuario;
 use Novosga\Repository\ServicoUsuarioRepositoryInterface;
 
 /**

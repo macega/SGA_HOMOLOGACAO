@@ -12,7 +12,7 @@
 namespace App\Controller\Admin;
 
 use App\Form\DepartamentoType as EntityType;
-use Novosga\Entity\Departamento as Entity;
+use App\Entity\Departamento as Entity;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

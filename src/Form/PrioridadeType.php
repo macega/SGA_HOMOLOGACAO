@@ -11,7 +11,7 @@
 
 namespace App\Form;
 
-use Novosga\Entity\Prioridade;
+use App\Entity\Prioridade;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;

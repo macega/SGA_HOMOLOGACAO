@@ -13,7 +13,7 @@ namespace App\Listener\ORM;
 
 use Exception;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Novosga\Entity\Prioridade;
+use App\Entity\Prioridade;
 
 /**
  * PrioridadeListener

@@ -12,7 +12,7 @@
 namespace App\Form;
 
 use Doctrine\ORM\EntityRepository;
-use Novosga\Entity\Servico;
+use App\Entity\Servico;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -60,9 +60,18 @@ class ServicoType extends AbstractType
                 'class' => Servico::class,
                 'placeholder' => 'Nenhum',
                 'required' => false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('e')
-                                ->where('e.mestre IS NULL');
+                'query_builder' => function (EntityRepository $er) use ($entity) {
+                    $qb = $er
+                        ->createQueryBuilder('e')
+                        ->where('e.mestre IS NULL');
+
+                    if ($entity->getId()) {
+                        $qb
+                            ->andWhere('e != :entity')
+                            ->setParameter('entity', $entity);
+                    }
+
+                    return $qb;
                 }
             ]);
         }

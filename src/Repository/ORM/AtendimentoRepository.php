@@ -12,10 +12,10 @@
 namespace App\Repository\ORM;
 
 use Doctrine\ORM\EntityRepository;
-use Novosga\Entity\Atendimento;
-use Novosga\Entity\Servico;
-use Novosga\Entity\Unidade;
+use App\Entity\Atendimento;
 use Novosga\Repository\AtendimentoRepositoryInterface;
+use Novosga\Entity\UnidadeInterface;
+use Novosga\Entity\ServicoInterface;
 
 /**
  * AtendimentoRepository
@@ -27,7 +27,7 @@ class AtendimentoRepository extends EntityRepository implements AtendimentoRepos
     /**
      * {@inheritdoc}
      */
-    public function countByServicos(Unidade $unidade, array $servicos, $status = null)
+    public function countByServicos(UnidadeInterface $unidade, array $servicos, $status = null)
     {
         $qb = $this
             ->getEntityManager()
@@ -61,7 +61,7 @@ class AtendimentoRepository extends EntityRepository implements AtendimentoRepos
     /**
      * {@inheritdoc}
      */
-    public function getUltimo(Unidade $unidade, Servico $servico = null)
+    public function getUltimo(UnidadeInterface $unidade, ServicoInterface $servico = null)
     {
         $qb = $this
             ->getEntityManager()

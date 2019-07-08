@@ -12,7 +12,7 @@
 namespace App\Repository\ORM;
 
 use Doctrine\ORM\EntityRepository;
-use Novosga\Entity\EntityMetadata;
+use App\Entity\EntityMetadata;
 use Novosga\Repository\EntityMetadataRepositoryInterface;
 
 /**

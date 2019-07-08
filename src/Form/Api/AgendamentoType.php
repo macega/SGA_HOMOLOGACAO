@@ -12,9 +12,9 @@
 namespace App\Form\Api;
 
 use App\Form\ClienteType;
-use Novosga\Entity\Agendamento;
-use Novosga\Entity\Servico;
-use Novosga\Entity\Unidade;
+use App\Entity\Agendamento;
+use App\Entity\Servico;
+use App\Entity\Unidade;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;

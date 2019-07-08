@@ -14,7 +14,7 @@ namespace App\Command;
 use Doctrine\Common\Persistence\ObjectManager;
 use Exception;
 use Novosga\Entity\Unidade;
-use Novosga\Service\AtendimentoService;
+use App\Service\AtendimentoService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;

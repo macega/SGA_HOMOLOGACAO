@@ -13,8 +13,8 @@ namespace App\Controller\Api;
 
 use App\Entity\NovaSenha;
 use App\Service\TicketService;
-use Novosga\Entity\Atendimento;
-use Novosga\Service\AtendimentoService;
+use App\Entity\Atendimento;
+use App\Service\AtendimentoService;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;

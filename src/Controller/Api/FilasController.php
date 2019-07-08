@@ -11,10 +11,10 @@
 
 namespace App\Controller\Api;
 
-use Novosga\Entity\Unidade;
-use Novosga\Service\AtendimentoService;
-use Novosga\Service\FilaService;
-use Novosga\Service\UsuarioService;
+use App\Entity\Unidade;
+use App\Service\AtendimentoService;
+use App\Service\FilaService;
+use App\Service\UsuarioService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

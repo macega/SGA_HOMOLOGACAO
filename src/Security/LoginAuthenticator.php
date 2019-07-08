@@ -2,7 +2,7 @@
 
 namespace App\Security;
 
-use Novosga\Entity\Usuario;
+use App\Entity\Usuario;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,8 +81,10 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        if (!$user->isEnabled()) {
-            throw new \Exception('Usuário desabilitado');
+        if ($user instanceof Usuario) {
+            if (!$user->isEnabled()) {
+                throw new CustomUserMessageAuthenticationException('Usuário desabilitado');
+            }
         }
 
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);

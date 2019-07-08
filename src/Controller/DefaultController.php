@@ -11,8 +11,8 @@
 
 namespace App\Controller;
 
-use Novosga\Entity\Unidade;
-use Novosga\Entity\Usuario;
+use App\Entity\Unidade;
+use App\Entity\Usuario;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

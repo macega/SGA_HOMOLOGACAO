@@ -12,7 +12,7 @@ security:
     providers:
         novosga_provider:
             entity:
-                class: Novosga\Entity\Usuario
+                class: App\Entity\Usuario
                 property: login
 
     firewalls:

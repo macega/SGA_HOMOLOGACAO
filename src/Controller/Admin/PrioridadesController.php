@@ -11,7 +11,7 @@
 
 namespace App\Controller\Admin;
 
-use Novosga\Entity\Prioridade as Entity;
+use App\Entity\Prioridade as Entity;
 use App\Form\PrioridadeType as EntityType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

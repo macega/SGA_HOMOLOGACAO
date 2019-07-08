@@ -1,0 +1,16 @@
+App\Entity\UsuarioMeta:
+    type: entity
+    table: usuarios_metadata
+    repositoryClass: App\Repository\ORM\EntityMetadataRepository
+    id:
+        entity:
+            associationKey: true
+    manyToOne:
+        entity:
+            targetEntity: App\Entity\Usuario
+            fetch: LAZY
+            joinColumns:
+                usuario_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

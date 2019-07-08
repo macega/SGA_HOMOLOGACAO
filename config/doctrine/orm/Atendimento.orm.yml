@@ -1,0 +1,12 @@
+App\Entity\Atendimento:
+    type: entity
+    table: atendimentos
+    repositoryClass: App\Repository\ORM\AtendimentoRepository
+    oneToMany:
+        codificados:
+            targetEntity: App\Entity\AtendimentoCodificado
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: atendimento
+            orphanRemoval: false
+            orderBy: null

@@ -12,7 +12,7 @@
 namespace App\Repository\ORM;
 
 use Doctrine\ORM\EntityRepository;
-use Novosga\Entity\Perfil;
+use App\Entity\Perfil;
 use Novosga\Repository\PerfilRepositoryInterface;
 
 /**

@@ -12,10 +12,12 @@
 namespace App\Repository\ORM;
 
 use Doctrine\ORM\EntityRepository;
-use Novosga\Entity\Lotacao;
-use Novosga\Entity\Unidade;
-use Novosga\Entity\Usuario;
+use App\Entity\Lotacao;
+use App\Entity\Unidade;
+use App\Entity\Usuario;
 use Novosga\Repository\LotacaoRepositoryInterface;
+use Novosga\Entity\UsuarioInterface;
+use Novosga\Entity\UnidadeInterface;
 
 /**
  * LotacaoRepository
@@ -31,7 +33,7 @@ class LotacaoRepository extends EntityRepository implements LotacaoRepositoryInt
      * @param Usuario $usuario
      * @return Lotacao[]
      */
-    public function getLotacoes(Usuario $usuario)
+    public function getLotacoes(UsuarioInterface $usuario)
     {
         return $this->getEntityManager()
                 ->createQueryBuilder()
@@ -74,11 +76,11 @@ class LotacaoRepository extends EntityRepository implements LotacaoRepositoryInt
     /**
      * Retorna a lotação do usuário na unidade
      *
-     * @param Usuario $usuario
-     * @param Unidade $unidade
+     * @param UsuarioInterface $usuario
+     * @param UnidadeInterface $unidade
      * @return Lotacao
      */
-    public function getLotacao(Usuario $usuario, Unidade $unidade)
+    public function getLotacao(UsuarioInterface $usuario, UnidadeInterface $unidade)
     {
         return $this->getEntityManager()
                 ->createQueryBuilder()

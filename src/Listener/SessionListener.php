@@ -11,7 +11,7 @@
 
 namespace App\Listener;
 
-use Novosga\Entity\Usuario;
+use App\Entity\Usuario;
 use Novosga\Http\Envelope;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;

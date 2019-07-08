@@ -4,6 +4,8 @@ parameters:
     locale: '%env(LANGUAGE)%'
     version: '2.1.0'
     title: 'Novo SGA CE'
+    env(MERCURE_PUBLISH_URL): ''
+    env(MERCURE_JWT_SECRET): ''
 
 services:
     # default configuration for services in *this* file
@@ -73,5 +75,5 @@ services:
     Novosga\Infrastructure\StorageInterface:
         factory: 'App\Infrastructure\StorageFactory:createStorage'
 
-    Novosga\Service\Configuration:
+    App\Service\Configuration:
         $rootDir: '%kernel.project_dir%'

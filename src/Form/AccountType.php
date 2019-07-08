@@ -11,7 +11,7 @@
 
 namespace App\Form;
 
-use Novosga\Entity\Perfil;
+use App\Entity\Perfil;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;

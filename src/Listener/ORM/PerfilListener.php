@@ -12,7 +12,7 @@
 namespace App\Listener\ORM;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Novosga\Entity\Perfil;
+use App\Entity\Perfil;
 
 /**
  * PerfilListener

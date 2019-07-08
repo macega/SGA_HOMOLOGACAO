@@ -1,0 +1,16 @@
+App\Entity\ClienteMeta:
+    type: entity
+    table: clientes_metadata
+    repositoryClass: App\Repository\ORM\EntityMetadataRepository
+    id:
+        entity:
+            associationKey: true
+    manyToOne:
+        entity:
+            targetEntity: App\Entity\Cliente
+            fetch: LAZY
+            joinColumns:
+                cliente_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

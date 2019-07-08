@@ -11,8 +11,8 @@
 
 namespace App\Controller\Api;
 
-use Novosga\Entity\Unidade;
-use Novosga\Entity\PainelSenha;
+use App\Entity\Unidade;
+use App\Entity\PainelSenha;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;

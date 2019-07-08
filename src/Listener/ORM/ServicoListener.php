@@ -13,9 +13,9 @@ namespace App\Listener\ORM;
 
 use Exception;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Novosga\Entity\Servico;
-use Novosga\Entity\ServicoUnidade;
-use Novosga\Entity\ServicoUsuario;
+use App\Entity\Servico;
+use App\Entity\ServicoUnidade;
+use App\Entity\ServicoUsuario;
 
 /**
  * ServicoListener

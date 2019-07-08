@@ -20,7 +20,7 @@ use Novosga\Event\StorageAwareEventInterface;
 use Novosga\Event\UserAwareEventInterface;
 use Novosga\Infrastructure\StorageInterface;
 use Psr\Log\LoggerInterface;
-use Novosga\Service\Configuration;
+use App\Service\Configuration;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 

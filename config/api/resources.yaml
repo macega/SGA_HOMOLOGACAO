@@ -1,5 +1,5 @@
 resources:
-    Novosga\Entity\Atendimento:
+    App\Entity\Atendimento:
         shortName: 'Atendimento'
         description: 'Support tickets'
         iri: 'http://schema.org/Atendimento'
@@ -10,7 +10,7 @@ resources:
         collectionOperations:
             get:
                 method: 'GET'
-    Novosga\Entity\AtendimentoHistorico:
+    App\Entity\AtendimentoHistorico:
         shortName: 'AtendimentoHistorico'
         description: 'Historical support tickets'
         iri: 'http://schema.org/AtendimentoHistorico'
@@ -22,7 +22,7 @@ resources:
             get:
                 method: 'GET'
 
-    Novosga\Entity\Unidade:
+    App\Entity\Unidade:
         shortName: 'Unidade'
         description: 'Attendance unity'
         iri: 'http://schema.org/Unidade'
@@ -43,7 +43,7 @@ resources:
                 method: 'POST'
                 access_control: "is_granted('ROLE_ADMIN')"
 
-    Novosga\Entity\Departamento:
+    App\Entity\Departamento:
         shortName: 'Departamento'
         description: 'Attendance departments'
         iri: 'http://schema.org/Departamento'
@@ -64,7 +64,7 @@ resources:
                 method: 'POST'
                 access_control: "is_granted('ROLE_ADMIN')"
 
-    Novosga\Entity\Prioridade:
+    App\Entity\Prioridade:
         shortName: 'Prioridade'
         description: 'Attendance priority'
         iri: 'http://schema.org/Prioridade'
@@ -85,7 +85,7 @@ resources:
                 method: 'POST'
                 access_control: "is_granted('ROLE_ADMIN')"
 
-    Novosga\Entity\Local:
+    App\Entity\Local:
         shortName: 'Local'
         description: 'Attendance place'
         iri: 'http://schema.org/Local'
@@ -111,7 +111,7 @@ resources:
                 path: 'locais'
                 access_control: "is_granted('ROLE_ADMIN')"
 
-    Novosga\Entity\Servico:
+    App\Entity\Servico:
         shortName: 'Servico'
         description: 'Support service'
         iri: 'http://schema.org/Servico'
@@ -132,7 +132,7 @@ resources:
                 method: 'POST'
                 access_control: "is_granted('ROLE_ADMIN')"
 
-    Novosga\Entity\Usuario:
+    App\Entity\Usuario:
         shortName: 'Usuario'
         description: 'System users'
         iri: 'http://schema.org/Usuario'
@@ -153,7 +153,7 @@ resources:
                 method: 'POST'
                 access_control: "is_granted('ROLE_ADMIN')"
 
-    Novosga\Entity\PainelSenha:
+    App\Entity\PainelSenha:
         shortName: 'PainelSenha'
         description: 'Ticket sent to panel'
         iri: 'http://schema.org/PainelSenha'

@@ -13,17 +13,20 @@ namespace App\Repository\ORM;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
-use Novosga\Entity\Lotacao;
-use Novosga\Entity\ServicoUnidade;
-use Novosga\Entity\Unidade;
-use Novosga\Entity\Usuario;
-use Novosga\Service\UsuarioService;
+use App\Entity\Lotacao;
+use App\Entity\ServicoUnidade;
+use App\Entity\Unidade;
+use App\Entity\Usuario;
+use App\Service\UsuarioService;
 use Novosga\Repository\UsuarioRepositoryInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Novosga\Entity\UnidadeInterface;
+use Novosga\Entity\ServicoUnidadeInterface;
+use Novosga\Entity\UsuarioInterface;
 
 /**
  * UsuarioRepository
@@ -49,7 +52,7 @@ class UsuarioRepository extends ServiceEntityRepository implements
     /**
      * {@inheritdoc}
      */
-    public function findByUnidade(Unidade $unidade, Criteria $criteria = null)
+    public function findByUnidade(UnidadeInterface $unidade, Criteria $criteria = null)
     {
         $usuarios = $this
             ->queryBuilderFindByUnidade($unidade, $criteria)
@@ -62,13 +65,13 @@ class UsuarioRepository extends ServiceEntityRepository implements
     /**
      * {@inheritdoc}
      */
-    public function findByServicoUnidade(ServicoUnidade $servicoUnidade, Criteria $criteria = null)
+    public function findByServicoUnidade(ServicoUnidadeInterface $servicoUnidade, Criteria $criteria = null)
     {
         $unidade  = $servicoUnidade->getUnidade();
         $servico  = $servicoUnidade->getServico();
         $usuarios = $this
             ->queryBuilderFindByUnidade($unidade, $criteria)
-            ->join(\Novosga\Entity\ServicoUsuario::class, 'su', 'WITH', 'su.usuario = e')
+            ->join(\App\Entity\ServicoUsuario::class, 'su', 'WITH', 'su.usuario = e')
             ->andWhere('su.servico = :servico')
             ->setParameter('servico', $servico)
             ->getQuery()
@@ -188,7 +191,7 @@ class UsuarioRepository extends ServiceEntityRepository implements
         return $unidade;
     }
 
-    public function updateUnidade(Usuario $usuario, Unidade $unidade)
+    public function updateUnidade(UsuarioInterface $usuario, UnidadeInterface $unidade)
     {
         $this
             ->usuarioService
@@ -204,7 +207,7 @@ class UsuarioRepository extends ServiceEntityRepository implements
         return $role;
     }
     
-    private function queryBuilderFindByUnidade(Unidade $unidade, Criteria $criteria = null)
+    private function queryBuilderFindByUnidade(UnidadeInterface $unidade, Criteria $criteria = null)
     {
         $qb = $this
             ->createQueryBuilder('e')

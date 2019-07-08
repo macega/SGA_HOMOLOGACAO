@@ -12,9 +12,10 @@
 namespace App\Repository\ORM;
 
 use Doctrine\ORM\EntityRepository;
-use Novosga\Entity\Departamento;
-use Novosga\Entity\Servico;
+use App\Entity\Departamento;
+use App\Entity\Servico;
 use Novosga\Repository\ServicoRepositoryInterface;
+use Novosga\Entity\ServicoInterface;
 
 /**
  * ServicoRepository
@@ -26,7 +27,7 @@ class ServicoRepository extends EntityRepository implements ServicoRepositoryInt
     /**
      * {@inheritdoc}
      */
-    public function getSubservicos(Servico $servico)
+    public function getSubservicos(ServicoInterface $servico)
     {
         $subservicos = $this
             ->getEntityManager()

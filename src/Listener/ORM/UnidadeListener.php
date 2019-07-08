@@ -13,8 +13,8 @@ namespace App\Listener\ORM;
 
 use Exception;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Novosga\Entity\Unidade;
-use Novosga\Entity\ServicoUnidade;
+use App\Entity\Unidade;
+use App\Entity\ServicoUnidade;
 
 /**
  * UnidadeListener

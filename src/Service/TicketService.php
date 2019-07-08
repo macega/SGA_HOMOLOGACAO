@@ -13,11 +13,12 @@ namespace App\Service;
 
 use DateTime;
 use Exception;
-use Novosga\Entity\Atendimento;
-use Novosga\Entity\ServicoUnidade;
+use App\Entity\Atendimento;
+use App\Entity\ServicoUnidade;
 use Novosga\Infrastructure\StorageInterface;
-use Novosga\Service\StorageAwareService;
+use App\Service\StorageAwareService;
 use Twig_Environment;
+use App\Entity\AtendimentoInterface;
 
 /**
  * TicketService
@@ -46,7 +47,7 @@ class TicketService extends StorageAwareService
      *
      * @return string
      */
-    public function printTicket(Atendimento $atendimento)
+    public function printTicket(AtendimentoInterface $atendimento)
     {
         // custom view parameters
         $params = [];

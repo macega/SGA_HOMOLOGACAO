@@ -1,0 +1,12 @@
+App\Entity\ViewAtendimento:
+    type: entity
+    table: view_atendimentos
+    readOnly: true
+    oneToMany:
+        codificados:
+            targetEntity: App\Entity\ViewAtendimentoCodificado
+            fetch: LAZY
+            mappedBy: atendimento
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
