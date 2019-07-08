@@ -1,0 +1,25 @@
+App\Entity\Message:
+    type: entity
+    table: messages
+    repositoryClass: App\Repository\ORM\MessageRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: IDENTITY
+    fields:
+        subject:
+            type: string
+            length: 150
+            nullable: false
+        body:
+            type: text
+            nullable: false
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        sentOn:
+            type: datetime
+            nullable: true
+            column: sent_on

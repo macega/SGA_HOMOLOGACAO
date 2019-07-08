@@ -12,6 +12,9 @@
 namespace App\Controller;
 
 use App\Form\ProfileType;
+use App\Form\AccountType;
+use App\Form\AccessTokenType;
+use App\Entity\AccessToken;
 use Exception;
 use Novosga\Http\Envelope;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,39 +55,129 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/password", methods={"POST"})
+     * @Route("/lotacoes", name="profile_lotacoes", methods={"GET", "POST"})
      */
-    public function password(Request $request, EncoderFactoryInterface $factory)
+    public function lotacoes(Request $request, TranslatorInterface $translator)
     {
-        $envelope = new Envelope();
+        $user = $this->getUser();
         
-        $data         = json_decode($request->getContent());
-        $current      = $data->atual;
-        $password     = $data->senha;
-        $confirmation = $data->confirmacao;
-        $user         = $this->getUser();
-        $salt         = $user->getSalt();
-        $encoder      = $factory->getEncoder($user);
+        return $this->render('profile/lotacoes.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/account", name="profile_account", methods={"GET", "POST"})
+     */
+    public function account(Request $request, EncoderFactoryInterface $factory, TranslatorInterface $translator)
+    {
+        $user    = $this->getUser();
+        $encoder = $factory->getEncoder($user);
+        $salt    = $user->getSalt();
+        $form    = $this
+            ->createForm(AccountType::class)
+            ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $current      = $form->get('plainPassword')->getData();
+            $password     = $form->get('newPassword')->get('first')->getData();
+            $confirmation = $form->get('newPassword')->get('second')->getData();
+
+            try {
+                if (!$encoder->isPasswordValid($user->getPassword(), $current, $salt)) {
+                    throw new Exception('A senha atual informada não confere.');
+                }
+                
+                if (strlen($password) < 6) {
+                    throw new Exception(sprintf('A nova senha precisa ter no mínimo %s caraceteres.', 6));
+                }
         
-        if (!$encoder->isPasswordValid($user->getPassword(), $current, $salt)) {
-            throw new Exception('A senha atual informada não confere.');
+                $encoded = $encoder->encodePassword($password, $salt);
+                $user->setSenha($encoded);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->merge($user);
+                $em->flush();
+                
+                $this->addFlash('success', $translator->trans('Senha alterada com sucesso!'));
+
+                return $this->redirectToRoute('profile_account');
+            } catch (Exception $e) {
+                $this->addFlash('error', $translator->trans($e->getMessage()));
+            }
         }
         
-        if (strlen($password) < 6) {
-            throw new Exception(sprintf('A nova senha precisa ter no mínimo %s caraceteres.', 6));
+        return $this->render('profile/account.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/access-tokens", name="profile_tokens", methods={"GET", "POST"})
+     */
+    public function accessTokens(Request $request, TranslatorInterface $translator)
+    {
+        $em    = $this->getDoctrine()->getManager();
+        $user  = $this->getUser();
+        $token = new AccessToken();
+        $form  = $this
+            ->createForm(AccessTokenType::class, $token)
+            ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $permissions = $form->get('permissions')->getData();
+            $permission  = \array_sum($permissions);
+            $hash        = substr(md5(time()), 0, 20);
+
+            $token
+                ->setToken($hash)
+                ->setPermission($permission)
+                ->setUser($user);
+
+            $em->persist($token);
+            $em->flush();
+            
+            $this->addFlash('success', $translator->trans('Token criado com sucesso!'));
+
+            return $this->redirectToRoute('profile_tokens');
         }
 
-        if ($password !== $confirmation) {
-            throw new Exception('A nova senha e a confirmação da senha não conferem.');
+        $permissionsChoices   = $form->get('permissions')->getConfig()->getOption('choices');
+        $availablePermissions = \array_flip($permissionsChoices);
+
+        $tokens = $em
+            ->getRepository(AccessToken::class)
+            ->findBy([
+                'user'      => $user,
+                'deletedAt' => null,
+            ]);
+        
+        return $this->render('profile/access_tokens.html.twig', [
+            'user'                 => $user,
+            'tokens'               => $tokens,
+            'form'                 => $form->createView(),
+            'availablePermissions' => $availablePermissions,
+        ]);
+    }
+
+    /**
+     * @Route("/access-tokens/{id}", name="profile_tokens_delete", methods={"GET", "POST"})
+     */
+    public function removeAccessToken(Request $request, TranslatorInterface $translator, AccessToken $token)
+    {
+        $em    = $this->getDoctrine()->getManager();
+        $user  = $this->getUser();
+
+        if ($user === $token->getUser()) {
+            $token->setDeletedAt(new \DateTime());
+    
+            $em->merge($token);
+            $em->flush();
+
+            $this->addFlash('success', $translator->trans('Token removido com sucesso!'));
         }
 
-        $encoded = $encoder->encodePassword($password, $salt);
-        $user->setSenha($encoded);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->merge($user);
-        $em->flush();
-
-        return $this->json($envelope);
+        return $this->redirectToRoute('profile_tokens');
     }
 }

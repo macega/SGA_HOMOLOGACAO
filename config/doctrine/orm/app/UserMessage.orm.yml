@@ -1,0 +1,31 @@
+App\Entity\UserMessage:
+    type: entity
+    table: users_messages
+    repositoryClass: App\Repository\ORM\UserMessageRepository
+    id:
+        user:
+            associationKey: true
+        message:
+            associationKey: true
+    fields:
+        readAt:
+            type: datetime
+            nullable: true
+            column: read_at
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    manyToOne:
+        user:
+            targetEntity: Novosga\Entity\Usuario
+            fetch: EAGER
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+        message:
+            targetEntity: App\Entity\Message
+            fetch: EAGER
+            joinColumns:
+                message_id:
+                    referencedColumnName: id

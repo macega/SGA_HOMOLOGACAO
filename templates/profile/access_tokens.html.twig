@@ -1,0 +1,138 @@
+{% extends 'profile/base.html.twig' %}
+
+{% set current_item = 'tokens' %}
+
+{% block pageContent %}
+    <fieldset>
+        <legend>{{ 'profile.access_token'|trans }}</legend>
+        
+        <p class="text-secondary">{{ 'profile.access_token.description'|trans }}</p>
+
+        <div class="pb-3">
+            {{ form_start(form) }}
+
+                {% include 'flashMessages.html.twig' %}
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-lg-3">
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.expiresAt) }}
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-lg-4 col-xl-3">
+                        <fieldset class="form-group">
+                            <legend class="col-form-label">Permissions</legend>
+                            <div id="{{ form.permissions.vars.id }}">
+                                {% for permission in form.permissions %}
+                                    {{ form_row(permission, { help: permission.vars.attr.help }) }}
+                                {% endfor %}
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-xs-3 col-sm-6 col-lg-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-plus"></i>
+                            {{ 'btn.add'|trans }}
+                        </button>
+                    </div>
+                </div>
+
+            {{ form_end(form) }}
+        </div>
+
+
+        <h5 class="py-3">{{ 'label.user_access_tokens'|trans }}</h5>
+        
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>
+                        {{ 'label.name'|trans }}
+                    </th>
+                    <th>
+                        {{ 'label.token'|trans }}
+                    </th>
+                    <th>
+                        {{ 'label.permissions'|trans }}
+                    </th>
+                    <th>
+                        {{ 'label.expires_at'|trans }}
+                    </th>
+                    <th>
+                        {{ 'label.used_at'|trans }}
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for token in tokens %}
+                    <tr>
+                        <td>
+                            {{ token.name }}
+                            
+                        </td>
+                        <td>
+                            <a href="#" data-reveal="{{ token.token }}">*****</a>
+                        </td>
+                        <td>
+                            <ul>
+                                {% for value, permission in availablePermissions %}
+                                    {% if token.permission b-and value %}
+                                        <li>{{ permission }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
+                            {% if token.expiresAt %}
+                                {{ token.expiresAt|date('d/m/Y') }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if token.usedAt %}
+                                {{ token.usedAt|date('d/m/Y H:i:s') }}
+                            {% else %}
+                                <span class="badge badge-warning">
+                                    {{ 'label.never_used'|trans }}
+                                </span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form action="{{ path('profile_tokens_delete', { id: token.id }) }}" method="post" onsubmit="return confirm('{{ 'label.remover'|trans }}')">
+                                <button type="submit" class="btn btn-link text-danger" title="{{ 'label.remover'|trans }}">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </fieldset>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        ;(function () {
+            'use strict'
+
+            $('[data-reveal]').on('click', function (e) {
+                e.preventDefault();
+
+                let $elem = $(this);
+                let secret = $elem.data('reveal');
+                if (secret) {
+                    $elem
+                        .text(secret)
+                        .removeAttr('data-reveal')
+                        .removeAttr('href');
+                }
+            });
+        })()
+    </script>
+{% endblock %}

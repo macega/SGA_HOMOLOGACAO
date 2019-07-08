@@ -13,6 +13,7 @@ namespace App\Controller\Api;
 
 use Novosga\Entity\Unidade;
 use Novosga\Entity\PainelSenha;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,12 +24,12 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("/api")
  */
-class PainelController extends ApiControllerBase
+class PainelController extends AbstractController
 {
     /**
      * Retorna as senhas para serem exibidas no painel (max result 10).
      *
-     * @Route("/unidades/{id}/painel", methods={"GET"})
+     * @Route("/unidades/{id}/painel", methods={"GET"}, name="api_painel")
      */
     public function painel(Request $request, Unidade $unidade)
     {

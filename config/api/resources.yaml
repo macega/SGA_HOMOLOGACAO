@@ -162,8 +162,7 @@ resources:
         collectionOperations:
             get:
                 method: 'GET'
-                path: '/unidades/{id}/painel'
-                controller: App\Controller\Api\PainelController::painel
+                route_name: 'api_painel'
                 swagger_context:
                     parameters:
                         - 

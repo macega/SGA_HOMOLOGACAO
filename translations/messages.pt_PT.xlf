@@ -280,11 +280,12 @@
             </trans-unit>
             <trans-unit id="61">
                 <source>profile.lotation</source>
-                <target>Alocação</target>
+                <target>Alocações</target>
                 
             </trans-unit>
             <trans-unit id="62">
                 <source>profile.lotation.description</source>
+                <target>Alocação é utilizada para definir o perfil de acesso do usuário na unidade.</target>
                 
             </trans-unit>
             <trans-unit id="63">

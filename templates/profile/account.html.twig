@@ -1,0 +1,35 @@
+{% extends 'profile/base.html.twig' %}
+
+{% set current_item = 'account' %}
+
+{% block pageContent %}
+    <fieldset>
+        <legend>{{ 'profile.change_password'|trans }}</legend>
+
+        <p class="text-secondary">{{ 'profile.account.description'|trans }}</p>
+        
+        {{ form_start(form) }}
+
+            {% include 'flashMessages.html.twig' %}
+
+            {{ form_row(form.plainPassword) }}
+
+            {{ form_row(form.newPassword.first) }}
+
+            {{ form_row(form.newPassword.second) }}
+            
+            <button type="submit" class="btn btn-primary">
+                {{ 'profile.button.change_password'|trans }}
+            </button>
+
+        {{ form_end(form) }}
+    </fieldset>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
