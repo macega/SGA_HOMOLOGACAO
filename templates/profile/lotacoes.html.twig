@@ -1,0 +1,44 @@
+{% extends 'profile/base.html.twig' %}
+
+{% set current_item = 'lotacoes' %}
+
+{% block pageContent %}
+    <fieldset>
+        <legend>{{ 'profile.lotation'|trans }}</legend>
+        
+        <p class="text-secondary">{{ 'profile.lotation.description'|trans }}</p>
+        
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>
+                        {{ 'label.unity'|trans }}
+                    </th>
+                    <th>
+                        {{ 'label.role'|trans }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lotacao in user.lotacoes %}
+                    <tr>
+                        <td>
+                            {{lotacao.unidade}}
+                        </td>
+                        <td>
+                            {{lotacao.perfil}}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </fieldset>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

@@ -244,11 +244,11 @@
             </trans-unit>
             <trans-unit id="61">
                 <source>profile.lotation</source>
-                <target>Lotação</target>
+                <target>Lotações</target>
             </trans-unit>
             <trans-unit id="62">
                 <source>profile.lotation.description</source>
-                <target>Lotação é utilizada para definir o perfil de acesso do usuário nas unidades.</target>
+                <target>Lotação é utilizada para definir o perfil de acesso do usuário na unidade.</target>
             </trans-unit>
             <trans-unit id="63">
                 <source>profile.button.change_password</source>

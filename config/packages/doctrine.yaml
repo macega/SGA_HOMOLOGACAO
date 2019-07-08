@@ -12,7 +12,7 @@ doctrine:
             App:
                 is_bundle: false
                 type: yml
-                dir: '%kernel.project_dir%/config/doctrine/orm/api'
+                dir: '%kernel.project_dir%/config/doctrine/orm/app'
                 prefix: 'App\Entity'
                 alias: App
             Core:

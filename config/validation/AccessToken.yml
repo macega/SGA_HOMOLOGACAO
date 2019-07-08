@@ -1,0 +1,7 @@
+App\Entity\AccessToken:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [name, user]
+            errorPath: name
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [token, user]
