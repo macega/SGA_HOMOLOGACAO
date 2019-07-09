@@ -13,10 +13,10 @@ namespace App\Command;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Exception;
-use Novosga\Entity\Prioridade;
-use Novosga\Entity\Unidade;
-use Novosga\Entity\Usuario;
-use Symfony\Component\Console\Helper\QuestionHelper;
+use App\Entity\Prioridade;
+use App\Entity\Unidade;
+use App\Entity\Usuario;
+use App\Entity\Local;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -193,7 +193,7 @@ class InstallCommand extends UpdateCommand
         }
 
         // attendance place
-        if (!$this->existsData(\Novosga\Entity\Local::class)) {
+        if (!$this->existsData(Local::class)) {
             $placeName = $this->read(
                 $input,
                 $output,
@@ -322,11 +322,11 @@ class InstallCommand extends UpdateCommand
         return $prioridade;
     }
     
-    private function createPlace(string $name): \Novosga\Entity\Local
+    private function createPlace(string $name): Local
     {
-        $local = new \Novosga\Entity\Local();
+        $local = new Local();
         $local->setNome($name);
-        
+                
         return $local;
     }
 }

@@ -23,6 +23,7 @@ use Novosga\Entity\ClienteInterface;
 use Novosga\Entity\AtendimentoInterface;
 use Novosga\Entity\SenhaInterface;
 use Novosga\Entity\PrioridadeInterface;
+use Novosga\Entity\Cliente;
 
 /**
  * AbstractAtendimento.
@@ -149,7 +150,8 @@ abstract class AbstractAtendimento implements \JsonSerializable
     
     public function __construct()
     {
-        $this->senha = new Senha();
+        $this->senha   = new Senha();
+        $this->cliente = new Cliente();
     }
     
     public function getId()
@@ -536,7 +538,7 @@ abstract class AbstractAtendimento implements \JsonSerializable
             'prioridade'      => $this->getPrioridade(),
             'status'          => $this->getStatus(),
             'resolucao'       => $this->getResolucao(),
-            'cliente'         => $this->getCliente(),
+            'cliente'         => $this->cliente,
             'triagem'         => $this->getUsuarioTriagem() ? $this->getUsuarioTriagem()->getUsername() : null,
             'usuario'         => $this->getUsuario() ? $this->getUsuario()->getUsername() : null,
         ];

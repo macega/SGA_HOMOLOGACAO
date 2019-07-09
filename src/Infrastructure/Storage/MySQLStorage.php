@@ -12,9 +12,9 @@
 namespace App\Infrastructure\Storage;
 
 use Doctrine\DBAL\Connection;
-use Novosga\Entity\Contador;
-use Novosga\Entity\Servico;
-use Novosga\Entity\Unidade;
+use Novosga\Entity\UnidadeInterface;
+use Novosga\Entity\ServicoInterface;
+use Novosga\Entity\ContadorInterface;
 
 /**
  * MySQL Storage
@@ -26,9 +26,9 @@ class MySQLStorage extends RelationalStorage
     /**
      * {@inheritdoc}
      */
-    protected function numeroAtual(Connection $conn, Unidade $unidade, Servico $servico): int
+    protected function numeroAtual(Connection $conn, UnidadeInterface $unidade, ServicoInterface $servico): int
     {
-        $contadorTable = $this->om->getClassMetadata(Contador::class)->getTableName();
+        $contadorTable = $this->om->getClassMetadata(ContadorInterface::class)->getTableName();
      
         $stmt = $conn->prepare("
             SELECT numero 
@@ -50,7 +50,7 @@ class MySQLStorage extends RelationalStorage
     /**
      * {@inheritdoc}
      */
-    protected function preAcumularAtendimentos(Connection $conn, Unidade $unidade = null)
+    protected function preAcumularAtendimentos(Connection $conn, UnidadeInterface $unidade = null)
     {
         $conn->exec('SET foreign_key_checks = 0');
     }
@@ -58,7 +58,7 @@ class MySQLStorage extends RelationalStorage
     /**
      * {@inheritdoc}
      */
-    protected function preApagarDadosAtendimento(Connection $conn, Unidade $unidade = null)
+    protected function preApagarDadosAtendimento(Connection $conn, UnidadeInterface $unidade = null)
     {
         $conn->exec('SET foreign_key_checks = 0');
     }

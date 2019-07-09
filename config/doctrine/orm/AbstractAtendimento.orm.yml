@@ -2,7 +2,7 @@ App\Entity\AbstractAtendimento:
     type: mappedSuperclass
     id:
         id:
-            type: integer
+            type: uuid_binary
             generator:
                 strategy: IDENTITY
     fields:

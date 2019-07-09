@@ -12,9 +12,9 @@
 namespace App\Infrastructure\Storage;
 
 use Doctrine\DBAL\Connection;
-use Novosga\Entity\Contador;
-use Novosga\Entity\Servico;
-use Novosga\Entity\Unidade;
+use Novosga\Entity\ContadorInterface;
+use Novosga\Entity\ServicoInterface;
+use Novosga\Entity\UnidadeInterface;
 
 /**
  * PostgreSQL Storage
@@ -26,7 +26,7 @@ class PostgreSQLStorage extends RelationalStorage
     /**
      * {@inheritdoc}
      */
-    protected function numeroAtual(Connection $conn, Unidade $unidade, Servico $servico): int
+    protected function numeroAtual(Connection $conn, UnidadeInterface $unidade, ServicoInterface $servico): int
     {
         $contadorTable = $this->om->getClassMetadata(Contador::class)->getTableName();
      
@@ -50,14 +50,14 @@ class PostgreSQLStorage extends RelationalStorage
     /**
      * {@inheritdoc}
      */
-    protected function preAcumularAtendimentos(Connection $conn, Unidade $unidade = null)
+    protected function preAcumularAtendimentos(Connection $conn, UnidadeInterface $unidade = null)
     {
     }
     
     /**
      * {@inheritdoc}
      */
-    protected function preApagarDadosAtendimento(Connection $conn, Unidade $unidade = null)
+    protected function preApagarDadosAtendimento(Connection $conn, UnidadeInterface $unidade = null)
     {
     }
 }

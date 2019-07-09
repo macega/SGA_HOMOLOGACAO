@@ -4,6 +4,11 @@ parameters:
 doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
+        types:
+            uuid_binary:  Ramsey\Uuid\Doctrine\UuidBinaryType
+            uuid_binary_ordered_time: Ramsey\Uuid\Doctrine\UuidBinaryOrderedTimeType
+        mapping_types:
+            uuid_binary_ordered_time: binary
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -15,3 +20,25 @@ doctrine:
                 dir: '%kernel.project_dir%/config/doctrine/orm'
                 prefix: 'App\Entity'
                 alias: App
+        resolve_target_entities:
+            Novosga\Entity\AgendamentoInterface: App\Entity\Agendamento
+            Novosga\Entity\AtendimentoDiaInterface: App\Entity\Atendimento
+            Novosga\Entity\AtendimentoHistoricoInterface: App\Entity\AtendimentoHistorico
+            Novosga\Entity\ClienteInterface: App\Entity\Cliente
+            Novosga\Entity\ClienteMetadataInterface: App\Entity\ClienteMeta
+            Novosga\Entity\ContadorInterface: App\Entity\Contador
+            Novosga\Entity\DepartamentoInterface: App\Entity\Departamento
+            Novosga\Entity\LocalInterface: App\Entity\Local
+            Novosga\Entity\LotacaoInterface: App\Entity\Lotacao
+            Novosga\Entity\PainelInterface: App\Entity\Painel
+            Novosga\Entity\PainelSenhaInterface: App\Entity\PainelSenha
+            Novosga\Entity\PrioridadeInterface: App\Entity\Prioridade
+            Novosga\Entity\ServicoInterface: App\Entity\Servico
+            Novosga\Entity\ServicoMetadataInterface: App\Entity\ServicoMeta
+            Novosga\Entity\ServicoUnidadeInterface: App\Entity\ServicoUnidade
+            Novosga\Entity\ServicoUsuarioInterface: App\Entity\ServicoUsuario
+            Novosga\Entity\UnidadeInterface: App\Entity\Unidade
+            Novosga\Entity\UnidadeMetadataInterface: App\Entity\UnidadeMeta
+            Novosga\Entity\UsuarioInterface: App\Entity\Usuario
+            Novosga\Entity\UsuarioMetadataInterface: App\Entity\UsuarioMeta
+            Novosga\Entity\ViewAtendimentoInterface: App\Entity\ViewAtendimento

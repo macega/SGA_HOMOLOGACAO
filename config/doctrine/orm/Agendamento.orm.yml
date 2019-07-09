@@ -3,9 +3,11 @@ App\Entity\Agendamento:
     table: agendamentos
     id:
         id:
-            type: integer
+            type: uuid_binary
             generator:
-                strategy: IDENTITY
+                strategy: CUSTOM
+            customIdGenerator:
+                class: Ramsey\Uuid\Doctrine\UuidGenerator
     fields:
         data:
             type: date

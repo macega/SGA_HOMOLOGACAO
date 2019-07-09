@@ -30,7 +30,7 @@ class Departamento implements DepartamentoInterface, \JsonSerializable
     /**
      * @var string
      */
-    private $nome;
+    private $nome = '';
 
     /**
      * @var string

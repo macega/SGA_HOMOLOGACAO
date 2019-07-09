@@ -5,12 +5,10 @@ namespace App\Migrations;
 use Doctrine\DBAL\Schema\View;
 use Doctrine\Migrations\AbstractMigration;
 use Doctrine\ORM\EntityManagerInterface;
-use Novosga\Entity\AbstractAtendimento;
-use Novosga\Entity\AbstractAtendimentoCodificado;
-use Novosga\Entity\Atendimento;
-use Novosga\Entity\AtendimentoCodificado;
-use Novosga\Entity\AtendimentoHistorico;
-use Novosga\Entity\AtendimentoCodificadoHistorico;
+use App\Entity\Atendimento;
+use App\Entity\AtendimentoCodificado;
+use App\Entity\AtendimentoHistorico;
+use App\Entity\AtendimentoCodificadoHistorico;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 

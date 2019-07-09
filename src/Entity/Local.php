@@ -59,7 +59,7 @@ class Local implements LocalInterface, \JsonSerializable
         return $this;
     }
     
-    public function setNome(stirng $nome): self
+    public function setNome(string $nome): self
     {
         $this->nome = $nome;
 

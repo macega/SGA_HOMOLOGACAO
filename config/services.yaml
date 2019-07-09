@@ -64,11 +64,6 @@ services:
     App\Extensions\Doctrine\SchemaViewIgnorer:
         tags:
             - { name: doctrine.event_listener, event: postGenerateSchema, connection: default }
-    
-    # novosga core services
-    Novosga\Service\:
-        resource: '../vendor/novosga/core/Service'
-        public: true
         
     Novosga\Event\EventDispatcherInterface: '@App\Service\EventDispatcher'
         

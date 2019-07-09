@@ -4,9 +4,11 @@ App\Entity\Cliente:
     repositoryClass: App\Repository\ORM\ClienteRepository
     id:
         id:
-            type: integer
+            type: uuid_binary
             generator:
-                strategy: IDENTITY
+                strategy: CUSTOM
+            customIdGenerator:
+                class: Ramsey\Uuid\Doctrine\UuidGenerator
     fields:
         nome:
             type: string

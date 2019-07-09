@@ -30,6 +30,7 @@
         "novosga/triage-bundle": "^2.1-dev",
         "novosga/users-bundle": "^2.1-dev",
         "novosga/websocket-server": "^2.1-dev",
+        "ramsey/uuid-doctrine": "^1.5",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "*",
         "symfony/console": "*",

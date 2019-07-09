@@ -32,7 +32,7 @@ class Servico implements ServicoInterface, \JsonSerializable
     /**
      * @var string
      */
-    private $nome;
+    private $nome = '';
 
     /**
      * @var string
@@ -47,7 +47,7 @@ class Servico implements ServicoInterface, \JsonSerializable
     /**
      * @var int
      */
-    private $peso;
+    private $peso = 1;
 
     /**
      * @var Servico

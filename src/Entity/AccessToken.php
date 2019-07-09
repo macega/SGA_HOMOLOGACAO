@@ -13,7 +13,7 @@ namespace App\Entity;
 
 use DateTime;
 use DateTimeInterface;
-use Novosga\Entity\Usuario;
+use App\Entity\Usuario;
 
 /**
  * AccessToken

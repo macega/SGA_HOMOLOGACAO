@@ -12,7 +12,7 @@
 namespace App\Entity;
 
 use DateTimeInterface;
-use Novosga\Entity\Usuario;
+use App\Entity\Usuario;
 
 /**
  * UserMessage

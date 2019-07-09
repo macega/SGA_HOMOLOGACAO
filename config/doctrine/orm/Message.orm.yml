@@ -4,9 +4,11 @@ App\Entity\Message:
     repositoryClass: App\Repository\ORM\MessageRepository
     id:
         id:
-            type: integer
+            type: uuid_binary
             generator:
-                strategy: IDENTITY
+                strategy: CUSTOM
+            customIdGenerator:
+                class: Ramsey\Uuid\Doctrine\UuidGenerator
     fields:
         subject:
             type: string

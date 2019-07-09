@@ -3,9 +3,11 @@ App\Entity\PainelSenha:
     table: painel_senha
     id:
         id:
-            type: integer
+            type: uuid_binary
             generator:
-                strategy: IDENTITY
+                strategy: CUSTOM
+            customIdGenerator:
+                class: Ramsey\Uuid\Doctrine\UuidGenerator
     fields:
         numeroSenha:
             type: integer

@@ -15,19 +15,22 @@ use DateTime;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\LockMode;
 use Exception;
-use Novosga\Entity\Agendamento;
-use Novosga\Entity\Atendimento;
-use Novosga\Entity\AtendimentoCodificado;
-use Novosga\Entity\AtendimentoCodificadoHistorico;
-use Novosga\Entity\AtendimentoHistorico;
-use Novosga\Entity\AtendimentoHistoricoMeta;
-use Novosga\Entity\AtendimentoMeta;
-use Novosga\Entity\Contador;
-use Novosga\Entity\PainelSenha;
-use Novosga\Entity\Servico;
-use Novosga\Entity\ServicoUnidade;
-use Novosga\Entity\Unidade;
+use App\Entity\Atendimento;
+use App\Entity\AtendimentoCodificado;
+use App\Entity\AtendimentoCodificadoHistorico;
+use App\Entity\AtendimentoHistorico;
+use App\Entity\AtendimentoHistoricoMeta;
+use App\Entity\AtendimentoMeta;
+use App\Entity\Contador;
+use App\Entity\PainelSenha;
+use App\Entity\Servico;
+use App\Entity\ServicoUnidade;
+use App\Entity\Unidade;
 use PDO;
+use Novosga\Entity\AtendimentoInterface;
+use Novosga\Entity\AgendamentoInterface;
+use Novosga\Entity\UnidadeInterface;
+use Novosga\Entity\ServicoInterface;
 
 /**
  * ORM Storage
@@ -42,19 +45,19 @@ abstract class RelationalStorage extends DoctrineStorage
      * @param Servico    $servico
      * @return int
      */
-    abstract protected function numeroAtual(Connection $conn, Unidade $unidade, Servico $servico): int;
+    abstract protected function numeroAtual(Connection $conn, UnidadeInterface $unidade, ServicoInterface $servico): int;
     
     /**
      * @param Connection   $conn
      * @param Unidade|null $unidade
      */
-    abstract protected function preAcumularAtendimentos(Connection $conn, Unidade $unidade = null);
+    abstract protected function preAcumularAtendimentos(Connection $conn, UnidadeInterface $unidade = null);
     
     /**
      * @param Connection   $conn
      * @param Unidade|null $unidade
      */
-    abstract protected function preApagarDadosAtendimento(Connection $conn, Unidade $unidade = null);
+    abstract protected function preApagarDadosAtendimento(Connection $conn, UnidadeInterface $unidade = null);
     
     /**
      * Reinicia os contadores dos serviços da unidade
@@ -84,7 +87,7 @@ abstract class RelationalStorage extends DoctrineStorage
     /**
      * {@inheritdoc}
      */
-    public function chamar(Atendimento $atendimento)
+    public function chamar(AtendimentoInterface $atendimento)
     {
         $this->om->getConnection()->beginTransaction();
 
@@ -102,7 +105,7 @@ abstract class RelationalStorage extends DoctrineStorage
     /**
      * {@inheritdoc}
      */
-    public function encerrar(Atendimento $atendimento, array $codificados, Atendimento $novoAtendimento = null)
+    public function encerrar(AtendimentoInterface $atendimento, array $codificados, AtendimentoInterface $novoAtendimento = null)
     {
         $this->om->beginTransaction();
         
@@ -130,7 +133,7 @@ abstract class RelationalStorage extends DoctrineStorage
     /**
      * {@inheritdoc}
      */
-    public function distribui(Atendimento $atendimento, Agendamento $agendamento = null)
+    public function distribui(AtendimentoInterface $atendimento, AgendamentoInterface $agendamento = null)
     {
         $self = $this;
         $conn = $this->om->getConnection();
@@ -186,7 +189,7 @@ abstract class RelationalStorage extends DoctrineStorage
     /**
      * {@inheritdoc}
      */
-    public function acumularAtendimentos(?Unidade $unidade, array $ctx = [])
+    public function acumularAtendimentos(?UnidadeInterface $unidade, array $ctx = [])
     {
         $self = $this;
         $conn = $this->om->getConnection();
@@ -365,7 +368,7 @@ abstract class RelationalStorage extends DoctrineStorage
     /**
      * {@inheritdoc}
      */
-    public function apagarDadosAtendimento(?Unidade $unidade, array $ctx = [])
+    public function apagarDadosAtendimento(?UnidadeInterface $unidade, array $ctx = [])
     {
         $self = $this;
         $conn = $this->om->getConnection();

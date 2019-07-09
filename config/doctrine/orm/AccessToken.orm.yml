@@ -4,7 +4,7 @@ App\Entity\AccessToken:
     repositoryClass: App\Repository\ORM\AccessTokenRepository
     id:
         id:
-            type: integer
+            type: uuid_binary
             generator:
                 strategy: IDENTITY
     fields:
